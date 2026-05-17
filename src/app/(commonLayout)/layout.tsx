@@ -7,8 +7,9 @@ const commonLayout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <main>
-      <Navbar1 logo={logo} menu={menu} auth={auth} session={session} />
+      <Navbar1 logo={logo} menu={menu} auth={auth} session={session as any} />
       {children}
+
     </main>
   );
 };

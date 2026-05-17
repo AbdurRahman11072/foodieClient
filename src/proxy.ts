@@ -8,7 +8,7 @@ export async function proxy(request: NextRequest) {
   const currentPath = request.nextUrl.pathname;
   // console.log(currentPath);
 
-  const role = userSession?.user.role;
+  const role = (userSession?.user as any)?.role;
 
   const isUserAuthorized =
     role === userRole.provider || role === userRole.admin;
@@ -34,7 +34,7 @@ export async function proxy(request: NextRequest) {
 
   if (
     currentPath.startsWith('/restaurants/create-restaurant') &&
-    userSession.user.restaurantId !== null
+    userSession && (userSession.user as any)?.restaurantId
   ) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }

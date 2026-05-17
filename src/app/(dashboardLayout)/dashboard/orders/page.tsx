@@ -14,7 +14,7 @@ interface PageProps {
 }
 
 const OrdersPage = async ({ searchParams }: PageProps) => {
-  const session: SessionData = await userService.getUserSession();
+  const session: any = await userService.getUserSession();
   const params = await searchParams;
 
   if (!session) return null;

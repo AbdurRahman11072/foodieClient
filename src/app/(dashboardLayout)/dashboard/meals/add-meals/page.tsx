@@ -8,7 +8,7 @@ const AddMealPage = async () => {
 
   if (!userSession) return null;
 
-  return <AddMealForm restaurantId={userSession.user.restaurantId} />;
+  return <AddMealForm restaurantId={(userSession.user as any).restaurantId} />;
 };
 
 export default AddMealPage;

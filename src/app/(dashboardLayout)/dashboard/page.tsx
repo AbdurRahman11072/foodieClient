@@ -18,8 +18,8 @@ const Dashboard = async () => {
   const statsData = stats?.data;
 
   // Fetch additional data for the dashboard
-  const restaurantsRes = session?.user?.role === 'admin' ? await restaurantService.getAllRestaurants() : null;
-  const usersRes = session?.user?.role === 'admin' ? await userService.getAllUsers() : null;
+  const restaurantsRes = (session?.user as any)?.role === 'admin' ? await restaurantService.getAllRestaurants() : null;
+  const usersRes = (session?.user as any)?.role === 'admin' ? await userService.getAllUsers() : null;
 
   const restaurants = restaurantsRes?.data || [];
   const users = usersRes?.data || [];
@@ -58,14 +58,14 @@ const Dashboard = async () => {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <PopularMeals meals={topMeals} />
         
-        {session?.user?.role === 'admin' && (
+        {(session?.user as any)?.role === 'admin' && (
           <>
             <RecentRestaurants restaurants={restaurants} />
             <NewUsers users={users} />
           </>
         )}
         
-        {session?.user?.role !== 'admin' && (
+        {(session?.user as any)?.role !== 'admin' && (
           <div className="col-span-1 lg:col-span-2">
              <Card className="border-none bg-primary/5 p-8 flex flex-col items-center justify-center text-center space-y-4 h-full min-h-[350px] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-500">

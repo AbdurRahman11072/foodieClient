@@ -6,7 +6,7 @@ import { userService } from '@/services/user.service';
 const checkOutPage = async () => {
   const session = await userService.getUserSession();
 
-  return <CheckoutPage session={session} />;
+  return <CheckoutPage session={session as any} />;
 };
 
 export default checkOutPage;

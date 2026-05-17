@@ -7,11 +7,10 @@ export const userService = {
     try {
       const session = await authClient?.getSession();
 
-      if (!session) {
+      if (!session || !session.data) {
         return null;
       }
-      console.log(session);
-      return session;
+      return session.data;
     } catch {
       return null;
     }

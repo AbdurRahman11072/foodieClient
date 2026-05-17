@@ -115,9 +115,9 @@ export function OrderItemCard({
         isOpen={isReviewModalOpen}
         onClose={() => setIsReviewModalOpen(false)}
         itemName={item.mealName}
-        userId={session?.user?.id}
-        userName={session?.user?.name}
-        userImg={session?.user?.image}
+        userId={session?.user?.id || ""}
+        userName={session?.user?.name || ""}
+        userImg={session?.user?.image || ""}
         restaurantId={item.restaurantId}
         mealId={item.mealId}
         onSuccess={handleReviewSuccess}

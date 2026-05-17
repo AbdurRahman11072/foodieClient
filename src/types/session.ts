@@ -1,13 +1,13 @@
 // Session type
 interface Session {
-  expiresAt: string;
-  token: string;
-  createdAt: string;
-  updatedAt: string;
-  ipAddress: string;
-  userAgent: string;
+  expiresAt: Date | string;
+  token?: string;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  ipAddress?: string | null;
+  userAgent?: string | null;
   userId: string;
-  impersonatedBy: null | string;
+  impersonatedBy?: null | string;
   id: string;
 }
 
@@ -16,14 +16,14 @@ interface User {
   name: string;
   email: string;
   emailVerified: boolean;
-  image: string;
-  createdAt: string;
-  updatedAt: string;
-  role: 'user' | 'admin' | 'provider'; // Add other roles as needed
-  banned: boolean;
-  banReason: null | string;
-  banExpires: null | string;
-  restaurantId: string | null;
+  image?: string | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  role?: 'user' | 'admin' | 'provider' | string; // Add other roles as needed
+  banned?: boolean;
+  banReason?: null | string;
+  banExpires?: null | string | Date;
+  restaurantId?: string | null;
   id: string;
 }
 

@@ -32,7 +32,7 @@ const MealDetailPage = async ({
   }
 
   // Pass the meal data directly (not as array)
-  return <MealDetailsCard meal={mealData.data} session={session} />;
+  return <MealDetailsCard meal={mealData.data} session={session as any} />;
 };
 
 export default MealDetailPage;
