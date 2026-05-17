@@ -11,7 +11,7 @@ import {
 import { authClient } from '@/lib/auth-client';
 import { Package, Star } from 'lucide-react';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ReviewModal } from './reviewModel';
 
 interface OrderItemCardProps {

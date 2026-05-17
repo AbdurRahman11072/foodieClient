@@ -4,7 +4,7 @@ import { env } from "@/env";
 import { updateTag } from "next/cache";
 import { cookies } from "next/headers";
 
-export const UpdateUserAction = async (id: string, userData: any) => {
+export const UpdateUserAction = async (id: string, userData: unknown) => {
   try {
     const cookieStore = await cookies();
 
@@ -44,7 +44,7 @@ export const setTokenAction = async (token: string) => {
       partitioned: true,
     });
     return { success: true, message: "Token set successfully", data: null };
-  } catch (error) {
+  } catch {
     return { success: false, message: "Login failed", data: null };
   }
 };

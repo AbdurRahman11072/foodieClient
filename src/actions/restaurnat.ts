@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 import { env } from 'process';
 
-export const CreateRestaurntsAction = async (restaurnts: any) => {
+export const CreateRestaurntsAction = async (restaurnts: unknown) => {
   try {
     const cookieStore = await cookies();
 

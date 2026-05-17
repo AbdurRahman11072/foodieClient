@@ -111,7 +111,7 @@ const BrowseMealsContent = () => {
             Browse Meals
           </h1>
           <p className="text-muted-foreground">
-            Find exactly what you're craving
+            Find exactly what you&apos;re craving
           </p>
         </div>
       </section>

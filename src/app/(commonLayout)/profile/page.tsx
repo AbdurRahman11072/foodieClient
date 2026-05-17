@@ -19,9 +19,9 @@ export default async function ProfilePage() {
   const { user } = sessionData;
 
   let restaurantData: Restaurant | null = null;
-  // @ts-ignore
+  // @ts-expect-error: user object may contain restaurantId from session
   if (user.restaurantId) {
-    // @ts-ignore
+    // @ts-expect-error: user object may contain restaurantId from session
     const res = await restaurantService.getRestaurantById(user.restaurantId);
     if (res?.success) {
       restaurantData = res.data as Restaurant;

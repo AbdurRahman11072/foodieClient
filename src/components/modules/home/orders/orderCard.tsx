@@ -5,7 +5,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Order, STATUS_CONFIG } from '@/types/order';
-import { SessionData } from '@/types/session';
 import {
   ArrowRight,
   Calendar,

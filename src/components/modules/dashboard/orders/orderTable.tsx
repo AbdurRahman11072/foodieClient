@@ -34,7 +34,7 @@ export function OrderTable({
   };
 
   const totalPages = Math.ceil(totalItems / limit);
-  const handleViewDetails = (orderItem: OrderItem) => {};
+  const handleViewDetails = () => {};
 
   if (!orders || orders.length === 0) {
     return (

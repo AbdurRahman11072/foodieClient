@@ -52,7 +52,7 @@ interface Category {
 export default function AddMealForm() {
   const router = useRouter();
   const { data: session } = authClient.useSession();
-  const restaurantId = (session?.user as any)?.restaurantId || '';
+  const restaurantId = session?.user?.restaurantId || '';
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [coverImagePreview, setCoverImagePreview] = useState<string>('');
@@ -60,7 +60,6 @@ export default function AddMealForm() {
 
   const {
     control,
-    register,
     handleSubmit,
     formState: { errors },
     reset,
@@ -92,7 +91,7 @@ export default function AddMealForm() {
         }
 
         setCategories(response.data);
-      } catch (error) {
+      } catch {
         toast.error('Failed to fetch categories');
       }
     };

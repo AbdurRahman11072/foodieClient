@@ -1,7 +1,6 @@
 import OrderDetails from '@/components/modules/home/orders/DetailsPage/orderDetails';
 import OrderSummary from '@/components/modules/home/orders/DetailsPage/orderSummary';
 import orderService from '@/services/order.service';
-import { userService } from '@/services/user.service';
 import { Order } from '@/types/order';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';

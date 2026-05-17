@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { CartItem } from '@/types/cart';
-import { SessionData } from '@/types/session';
 import {
   ArrowLeft,
   Heart,
@@ -15,7 +14,6 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { authClient } from '@/lib/auth-client';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -47,7 +45,6 @@ interface MealDetailsCardProps {
 
 const MealDetailsCard = ({ meal }: MealDetailsCardProps) => {
   const router = useRouter();
-  const { data: session } = authClient.useSession();
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
 

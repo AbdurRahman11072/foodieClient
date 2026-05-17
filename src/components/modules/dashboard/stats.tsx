@@ -1,7 +1,6 @@
 'use client';
 
 import { Card, CardContent } from '@/components/ui/card';
-import { SessionData } from '@/types/session';
 import { 
   Utensils, 
   ShoppingBag, 
@@ -17,9 +16,9 @@ type stats = {
   totalEarning?: number;
   totalUser?: number;
   activeUser?: number;
-  revenueData?: any[];
-  topMeals?: any[];
-  orderStatusDistribution?: any[];
+  revenueData?: { totalPrice: number }[];
+  topMeals?: unknown[];
+  orderStatusDistribution?: unknown[];
 };
 
 import { authClient } from '@/lib/auth-client';
@@ -63,7 +62,7 @@ export default function Stats({ statsData }: statsType) {
     },
   ];
 
-  if ((session?.user as any)?.role === 'admin') {
+  if (session?.user?.role === 'admin') {
     data = [
       {
         name: 'Total Users',

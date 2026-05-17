@@ -2,7 +2,6 @@
 'use client';
 
 import { Order } from '@/types/order';
-import { SessionData } from '@/types/session';
 import { useState } from 'react';
 import { OrderCard } from './orderCard';
 

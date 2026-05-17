@@ -1,6 +1,5 @@
 import MealDetailsCard from '@/components/modules/home/meals/mealDetails';
 import mealService from '@/services/meals.service';
-import { userService } from '@/services/user.service';
 import Link from 'next/link';
 
 

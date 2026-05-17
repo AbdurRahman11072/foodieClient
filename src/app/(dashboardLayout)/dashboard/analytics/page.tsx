@@ -27,7 +27,7 @@ const AnalyticsPage = async () => {
             Analytics Overview
           </h1>
           <p className="text-zinc-500 dark:text-zinc-400 max-w-2xl text-lg font-medium">
-            Deep dive into your restaurant's performance metrics and customer trends.
+            Deep dive into your restaurant&apos;s performance metrics and customer trends.
           </p>
         </div>
         <div className="flex items-center gap-3">

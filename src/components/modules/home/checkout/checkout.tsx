@@ -5,7 +5,6 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { env } from '@/env';
 import { CartItem } from '@/types/cart';
-import { SessionData } from '@/types/session';
 import { ArrowLeft, Clock, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { authClient } from '@/lib/auth-client';

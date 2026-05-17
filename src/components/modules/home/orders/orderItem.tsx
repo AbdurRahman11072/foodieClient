@@ -2,7 +2,6 @@
 'use client';
 
 import { OrderItem as OrderItemType, OrderStatus } from '@/types/order';
-import { SessionData } from '@/types/session';
 import { Package } from 'lucide-react';
 import { OrderItemCard } from './orderItemCard';
 interface OrderItemsProps {
