@@ -6,6 +6,7 @@ const commonLayout = async ({ children }: { children: React.ReactNode }) => {
   const userData = await authClient.getSession();
   const session = userData?.data;
   console.log("commonlayout", session);
+  console.log("User data : ", userData);
 
   return (
     <main>
