@@ -7,7 +7,7 @@ export const userService = {
     try {
       const session = await authClient?.getSession();
 
-      if (!session || !session.data) {
+      if (!session.data) {
         return null;
       }
       return session.data;
