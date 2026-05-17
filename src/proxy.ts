@@ -4,7 +4,7 @@ import { authClient } from "./lib/auth-client";
 
 // This function can be marked `async` if using `await` inside
 export async function proxy(request: NextRequest) {
-  const { data: userSession } = authClient.useSession();
+  const { data: userSession } = await authClient.useSession();
 
   console.log("proxy", userSession);
 
