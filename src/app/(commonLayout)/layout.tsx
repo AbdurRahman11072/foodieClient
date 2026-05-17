@@ -5,7 +5,7 @@ import { auth, logo, menu } from "@/routes/home.routes";
 const commonLayout = async ({ children }: { children: React.ReactNode }) => {
   const userData = await authClient.getSession();
   const session = userData?.data;
-  console.log(session);
+  console.log("commonlayout", session);
 
   return (
     <main>
