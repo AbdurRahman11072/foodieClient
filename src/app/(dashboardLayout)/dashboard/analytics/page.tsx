@@ -38,7 +38,7 @@ const AnalyticsPage = async () => {
       </header>
 
       <section className="space-y-6">
-         <Stats session={session} statsData={statsData} />
+         <Stats statsData={statsData} />
       </section>
 
       {/* Visual Analytics */}

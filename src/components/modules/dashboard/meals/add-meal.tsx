@@ -11,6 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { env } from '@/env';
 import { categoryService } from '@/services/category.service';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { authClient } from '@/lib/auth-client';
 import { PlusCircle } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -48,12 +49,10 @@ interface Category {
   updatedAt: string;
 }
 
-export default function AddMealForm({
-  restaurantId,
-}: {
-  restaurantId: string;
-}) {
+export default function AddMealForm() {
   const router = useRouter();
+  const { data: session } = authClient.useSession();
+  const restaurantId = (session?.user as any)?.restaurantId || '';
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [coverImagePreview, setCoverImagePreview] = useState<string>('');

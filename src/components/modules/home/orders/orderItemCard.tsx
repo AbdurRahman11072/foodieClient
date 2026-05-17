@@ -8,7 +8,7 @@ import {
   OrderItem as OrderItemType,
   OrderStatus,
 } from '@/types/order';
-import { SessionData } from '@/types/session';
+import { authClient } from '@/lib/auth-client';
 import { Package, Star } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -17,13 +17,12 @@ import { ReviewModal } from './reviewModel';
 interface OrderItemCardProps {
   item: OrderItemType;
   orderStatus?: OrderStatus;
-  session: SessionData;
 }
 
 export function OrderItemCard({
   item,
-  session,
 }: OrderItemCardProps) {
+  const { data: session } = authClient.useSession();
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [hasReviewed, setHasReviewed] = useState(
     () => (item.meal?.reviews?.length ?? 0) > 0

@@ -3,12 +3,8 @@ import { userService } from '@/services/user.service';
 
 
 
-const AddMealPage = async () => {
-  const userSession = await userService.getUserSession();
-
-  if (!userSession) return null;
-
-  return <AddMealForm restaurantId={(userSession.user as any).restaurantId} />;
+const AddMealPage = () => {
+  return <AddMealForm />;
 };
 
 export default AddMealPage;

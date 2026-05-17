@@ -8,10 +8,12 @@ import { CartItem } from '@/types/cart';
 import { SessionData } from '@/types/session';
 import { ArrowLeft, Clock, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
+import { authClient } from '@/lib/auth-client';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-export default function CheckoutPage({ session }: { session: SessionData }) {
+export default function CheckoutPage() {
+  const { data: session } = authClient.useSession();
   const [formData, setFormData] = useState({
     address: '',
     phone: '',

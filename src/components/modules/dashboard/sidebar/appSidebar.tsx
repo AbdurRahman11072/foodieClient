@@ -28,9 +28,11 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { authClient } from '@/lib/auth-client';
 import { useState } from 'react';
 
-export function AppSidebar({ session }: { session: SessionData | null }) {
+export function AppSidebar() {
+  const { data: session } = authClient.useSession();
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({
     products: false,
     billing: false,
@@ -85,7 +87,7 @@ export function AppSidebar({ session }: { session: SessionData | null }) {
     //   key: 'settings',
     // },
   ];
-  if (session?.user?.role === 'admin') {
+  if ((session?.user as any)?.role === 'admin') {
     menuItems = [
       {
         title: 'Dashboard',

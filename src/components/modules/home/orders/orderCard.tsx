@@ -23,10 +23,9 @@ import { OrderItems } from './orderItem';
 
 interface OrderCardProps {
   order: Order;
-  session: SessionData;
 }
 
-export function OrderCard({ order, session }: OrderCardProps) {
+export function OrderCard({ order }: OrderCardProps) {
   const StatusIcon = STATUS_CONFIG[order.status]?.icon || Package;
   const statusConfig = STATUS_CONFIG[order.status] || STATUS_CONFIG.PREPARING;
 
@@ -152,7 +151,6 @@ export function OrderCard({ order, session }: OrderCardProps) {
         {/* Order Items - Separate Component */}
         <OrderItems
           items={order.items}
-          session={session}
           orderStatus={order.status}
         />
 

@@ -43,7 +43,7 @@ const Dashboard = async () => {
       </header>
 
       {/* Existing Stats */}
-      <Stats session={session} statsData={statsData} />
+      <Stats statsData={statsData} />
 
       {/* Analytics Preview */}
       <section className="space-y-6">

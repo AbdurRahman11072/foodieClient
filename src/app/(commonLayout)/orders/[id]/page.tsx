@@ -15,7 +15,6 @@ const OrderDetailPage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
-  const session = await userService.getUserSession();
 
   const response = await orderService.getAllOrderByOrderId(id);
   const order: Order | null = response?.data;

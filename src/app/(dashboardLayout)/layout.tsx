@@ -10,7 +10,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <SidebarProvider>
-      <AppSidebar session={session} />
+      <AppSidebar />
       <SidebarInset>
         <Header />
         <main className="flex-1 p-5">{children}</main>

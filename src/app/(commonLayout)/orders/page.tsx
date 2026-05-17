@@ -19,7 +19,7 @@ const OrderPage = async () => {
     return <EmptyOrdersState />;
   }
 
-  return <MainOrder session={session} orders={orders} />;
+  return <MainOrder orders={orders} />;
 };
 
 export default OrderPage;

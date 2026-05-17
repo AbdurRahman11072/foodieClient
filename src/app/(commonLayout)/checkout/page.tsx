@@ -3,10 +3,8 @@ import { userService } from '@/services/user.service';
 
 
 
-const checkOutPage = async () => {
-  const session = await userService.getUserSession();
-
-  return <CheckoutPage session={session as any} />;
+const checkOutPage = () => {
+  return <CheckoutPage />;
 };
 
 export default checkOutPage;

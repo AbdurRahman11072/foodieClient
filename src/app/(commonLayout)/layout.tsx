@@ -9,7 +9,7 @@ const commonLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <main>
-      <Navbar1 logo={logo} menu={menu} auth={auth} session={session as any} />
+      <Navbar1 logo={logo} menu={menu} auth={auth} />
       {children}
     </main>
   );

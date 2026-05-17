@@ -22,12 +22,14 @@ type stats = {
   orderStatusDistribution?: any[];
 };
 
+import { authClient } from '@/lib/auth-client';
+
 type statsType = {
-  session: SessionData | null;
   statsData: stats;
 };
 
-export default function Stats({ session, statsData }: statsType) {
+export default function Stats({ statsData }: statsType) {
+  const { data: session } = authClient.useSession();
   const total7dRevenue = statsData.revenueData?.reduce((sum, o) => sum + o.totalPrice, 0) || 0;
 
   let data = [
@@ -61,7 +63,7 @@ export default function Stats({ session, statsData }: statsType) {
     },
   ];
 
-  if (session?.user?.role === 'admin') {
+  if ((session?.user as any)?.role === 'admin') {
     data = [
       {
         name: 'Total Users',

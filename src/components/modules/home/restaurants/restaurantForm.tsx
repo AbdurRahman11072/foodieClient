@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { env } from '@/env';
 import { restaurantSchema } from '@/schema/restaurant';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { authClient } from '@/lib/auth-client';
 import { PlusCircle } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -19,8 +20,10 @@ import * as z from 'zod';
 
 type RestaurantFormData = z.infer<typeof restaurantSchema>;
 
-export default function AddRestaurantForm({ ownerId }: { ownerId: string }) {
+export default function AddRestaurantForm() {
   const router = useRouter();
+  const { data: session } = authClient.useSession();
+  const ownerId = session?.user?.id || '';
   const [coverImagePreview, setCoverImagePreview] = useState<string>('');
   const [avatarImagePreview, setAvatarImagePreview] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);

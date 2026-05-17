@@ -12,7 +12,6 @@ const MealDetailPage = async ({
 }) => {
   const { id } = await params;
   const mealData = await mealService.getMealDetailsById(id);
-  const session = await userService.getUserSession();
 
   // Check if data exists (different structure than before)
   if (!mealData?.data || mealData.data.length === 0) {
@@ -32,7 +31,7 @@ const MealDetailPage = async ({
   }
 
   // Pass the meal data directly (not as array)
-  return <MealDetailsCard meal={mealData.data} session={session as any} />;
+  return <MealDetailsCard meal={mealData.data} />;
 };
 
 export default MealDetailPage;
