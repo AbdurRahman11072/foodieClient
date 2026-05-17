@@ -1,24 +1,11 @@
 import { env } from "@/env";
+import { authClient } from "@/lib/auth-client";
 import { cookies } from "next/headers";
 
 export const userService = {
   getUserSession: async () => {
     try {
-      const cookieStore = await cookies();
-
-      console.log("user Session", cookieStore);
-
-      const res = await fetch(
-        `${env.NEXT_PUBLIC_BACKEND_BETTER_AUTH_URL}get-session`,
-        {
-          headers: {
-            Cookie: cookieStore.toString(),
-          },
-          credentials: "include",
-          cache: "no-store",
-        },
-      );
-      const session = await res.json();
+      const session = await authClient?.getSession();
 
       if (!session) {
         return null;
