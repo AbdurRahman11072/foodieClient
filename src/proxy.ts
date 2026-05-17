@@ -1,10 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { userRole } from "./constants";
-import { userService } from "./services/user.service";
+import { authClient } from "./lib/auth-client";
 
 // This function can be marked `async` if using `await` inside
 export async function proxy(request: NextRequest) {
-  const userSession = await userService.getUserSession();
+  const { data: userSession } = authClient.useSession();
 
   console.log("proxy", userSession);
 
