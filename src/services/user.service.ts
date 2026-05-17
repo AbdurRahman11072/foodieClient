@@ -5,13 +5,13 @@ import { cookies } from "next/headers";
 export const userService = {
   getUserSession: async () => {
     try {
-      const session = await authClient?.getSession();
+      const { data: session } = await authClient?.useSession();
 
-      if (!session.data) {
+      if (!session) {
         return null;
       }
-      return session.data;
-    } catch {
+      return session;
+    } catch (error) {
       return null;
     }
   },
@@ -39,7 +39,7 @@ export const userService = {
       }
 
       return data;
-    } catch {
+    } catch (error) {
       return {
         success: false,
         message: "Something went wrong",

@@ -1,11 +1,12 @@
+"use client";
+
 import { AppSidebar } from '@/components/modules/dashboard/sidebar/appSidebar';
 import Header from '@/components/modules/dashboard/sidebar/sidebarHeader';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { authClient } from '@/lib/auth-client';
 
-const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
-  const userData = await authClient.getSession();
-  const session = userData?.data;
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const { data: session } = authClient.useSession();
 
   return (
     <SidebarProvider>
