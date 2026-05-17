@@ -33,7 +33,7 @@ import Link from "next/link";
 import DropDownMenu from "./dropDownMenu";
 
 const Navbar1 = ({ logo, menu, auth, session, className }: Navbar1Props) => {
-  console.log(session);
+  console.log("session: ", session);
 
   return (
     <section className={cn("py-4 border-b shadow-sm", className)}>
