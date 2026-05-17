@@ -26,6 +26,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { MenuItem, Navbar1Props } from "@/types/navbar";
 import Image from "next/image";
@@ -33,7 +34,8 @@ import Link from "next/link";
 import DropDownMenu from "./dropDownMenu";
 
 const Navbar1 = ({ logo, menu, auth, session, className }: Navbar1Props) => {
-  console.log("session: ", session);
+  const { data: sessionData } = authClient.useSession();
+  console.log("session2:", sessionData);
 
   return (
     <section className={cn("py-4 border-b shadow-sm", className)}>
