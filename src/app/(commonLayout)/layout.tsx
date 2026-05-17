@@ -3,10 +3,8 @@ import { authClient } from "@/lib/auth-client";
 import { auth, logo, menu } from "@/routes/home.routes";
 
 const commonLayout = async ({ children }: { children: React.ReactNode }) => {
-  const userData = await authClient.getSession();
-  const session = userData?.data;
-  console.log("commonlayout", session);
-  console.log("User data : ", userData);
+  const { data: session } = await authClient.getSession();
+  console.log("session: ", session);
 
   return (
     <main>
