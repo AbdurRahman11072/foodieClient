@@ -33,9 +33,8 @@ import Image from "next/image";
 import Link from "next/link";
 import DropDownMenu from "./dropDownMenu";
 
-const Navbar1 = ({ logo, menu, auth, session, className }: Navbar1Props) => {
-  const { data: sessionData } = authClient.useSession();
-  console.log("session2:", sessionData);
+const Navbar1 = ({ logo, menu, auth, className }: Navbar1Props) => {
+  const { data: session } = authClient.useSession();
 
   return (
     <section className={cn("py-4 border-b shadow-sm", className)}>
