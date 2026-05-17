@@ -1,11 +1,15 @@
 import { env } from "@/env";
 import { authClient } from "@/lib/auth-client";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 
 export const userService = {
   getUserSession: async () => {
     try {
-      const { data: session } = await authClient?.useSession();
+      const { data: session } = await authClient.getSession({
+        fetchOptions: {
+          headers: await headers(),
+        },
+      });
 
       if (!session) {
         return null;
