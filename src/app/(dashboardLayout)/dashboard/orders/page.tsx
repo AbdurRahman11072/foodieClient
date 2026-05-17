@@ -5,7 +5,6 @@ import { Card } from '@/components/ui/card';
 import orderService from '@/services/order.service';
 import { userService } from '@/services/user.service';
 import { OrderItem } from '@/types/order';
-import { SessionData } from '@/types/session';
 
 
 
@@ -14,7 +13,7 @@ interface PageProps {
 }
 
 const OrdersPage = async ({ searchParams }: PageProps) => {
-  const session: any = await userService.getUserSession();
+  const session = await userService.getUserSession();
   const params = await searchParams;
 
   if (!session) return null;
@@ -31,7 +30,7 @@ const OrdersPage = async ({ searchParams }: PageProps) => {
   );
 
   // Extract orders from response
-  let orders: OrderItem[] = response.data.data || [];
+  const orders: OrderItem[] = response.data.data || [];
 
   if (!response.success) {
     return (

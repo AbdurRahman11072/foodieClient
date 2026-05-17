@@ -54,12 +54,6 @@ export interface UsersTableProps {
   totalItems: number;
   currentPage: number;
   limit: number;
-  onEdit?: (user: User) => void;
-  onDelete?: (user: User) => void;
-  onBan?: (user: User) => void;
-  onUnban?: (user: User) => void;
-  onView?: (user: User) => void;
-  onRoleChange?: (user: User, role: string) => void;
 }
 
 export function UsersTable({
@@ -67,12 +61,6 @@ export function UsersTable({
   totalItems,
   currentPage,
   limit,
-  onEdit,
-  onDelete,
-  onBan,
-  onUnban,
-  onView,
-  onRoleChange,
 }: UsersTableProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -86,11 +74,8 @@ export function UsersTable({
 
   const totalPages = Math.ceil(totalItems / limit);
   const [hoveredRow, setHoveredRow] = useState<string | null>(null);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [detailsSheetOpen, setDetailsSheetOpen] = useState(false);
-  const [editSheetOpen, setEditSheetOpen] = useState(false);
 
-  const banUser = async (id: string, data: any) => {
+  const banUser = async (id: string, data: { banned: boolean }) => {
     const toastId = toast.loading('Updating user info......');
     const result = await UpdateUserAction(id, data);
 
@@ -102,7 +87,7 @@ export function UsersTable({
 
   // Get role badge colors and icon
   const getRoleBadge = (role: string) => {
-    const roles: Record<string, { color: string; icon: any; label: string }> = {
+    const roles: Record<string, { color: string; icon: React.ReactNode; label: string }> = {
       admin: {
         color:
           'bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800',

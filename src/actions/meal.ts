@@ -3,7 +3,7 @@ import { env } from '@/env';
 import { updateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
-export const CreateMealAction = async (meal: any) => {
+export const CreateMealAction = async (meal: unknown) => {
   try {
     const cookieStore = await cookies();
 
@@ -34,7 +34,7 @@ export const CreateMealAction = async (meal: any) => {
   }
 };
 
-export const UpdateMealAction = async (meal: any, id: string) => {
+export const UpdateMealAction = async (meal: unknown, id: string) => {
   try {
     const cookieStore = await cookies();
 

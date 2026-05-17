@@ -2,7 +2,6 @@
 import { MealsTable } from '@/components/modules/dashboard/meals/meals-table';
 import mealService from '@/services/meals.service';
 import { userService } from '@/services/user.service';
-import { SessionData } from '@/types/session';
 
 
 
@@ -11,7 +10,7 @@ interface PageProps {
 }
 
 const MealsPage = async ({ searchParams }: PageProps) => {
-  const session: any = await userService.getUserSession();
+  const session = await userService.getUserSession();
   const params = await searchParams;
 
   if (!session) return null;

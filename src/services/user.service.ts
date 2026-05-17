@@ -1,17 +1,30 @@
 import { env } from "@/env";
-import { authClient } from "@/lib/auth-client";
 import { cookies } from "next/headers";
 
 export const userService = {
   getUserSession: async () => {
     try {
-      const { data: session } = await authClient?.useSession();
+      const cookieStore = await cookies();
 
-      if (!session) {
-        return null;
-      }
-      return session;
+      // Get the specific Better Auth session cookie
+
+      const res = await fetch(
+        `${env.NEXT_PUBLIC_BACKEND_BETTER_AUTH_URL}get-session`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Cookie: cookieStore.toString(),
+          },
+
+          cache: "no-store",
+        },
+      );
+
+      const session = await res.json();
+      console.log(session);
+      return session || null;
     } catch (error) {
+      console.error("Session fetch error:", error);
       return null;
     }
   },
@@ -39,7 +52,7 @@ export const userService = {
       }
 
       return data;
-    } catch (error) {
+    } catch {
       return {
         success: false,
         message: "Something went wrong",

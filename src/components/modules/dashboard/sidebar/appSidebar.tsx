@@ -15,7 +15,6 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
-import { SessionData } from '@/types/session';
 import {
   BarChart3,
   ChevronDown,
@@ -87,7 +86,7 @@ export function AppSidebar() {
     //   key: 'settings',
     // },
   ];
-  if ((session?.user as any)?.role === 'admin') {
+  if (session?.user?.role === 'admin') {
     menuItems = [
       {
         title: 'Dashboard',

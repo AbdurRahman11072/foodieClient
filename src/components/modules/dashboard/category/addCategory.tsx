@@ -20,6 +20,7 @@ import { Input } from '@/components/ui/input';
 import { env } from '@/env';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PlusCircle, UploadIcon } from 'lucide-react';
+import Image from 'next/image';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -89,7 +90,7 @@ const AddCategory = () => {
       form.reset();
       setPreviewUrl('');
       toast.success('Category added successfully', { id: toastId });
-    } catch (error) {
+    } catch {
       toast.error('Error creating category', { id: toastId });
     } finally {
       setIsLoding(false);
@@ -141,9 +142,12 @@ const AddCategory = () => {
                     >
                       {previewUrl ? (
                         <div className="space-y-2">
-                          <img
+                          <Image
                             src={previewUrl}
                             alt="Preview"
+                            width={200}
+                            height={200}
+                            unoptimized
                             className="max-h-32 mx-auto object-contain"
                           />
                           <p className="text-sm text-gray-500">

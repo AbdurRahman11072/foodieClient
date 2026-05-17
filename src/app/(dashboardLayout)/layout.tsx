@@ -3,10 +3,8 @@
 import { AppSidebar } from '@/components/modules/dashboard/sidebar/appSidebar';
 import Header from '@/components/modules/dashboard/sidebar/sidebarHeader';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
-import { authClient } from '@/lib/auth-client';
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  const { data: session } = authClient.useSession();
 
   return (
     <SidebarProvider>

@@ -23,6 +23,7 @@ import {
   Tag,
   XCircle,
 } from 'lucide-react';
+import Image from 'next/image';
 
 interface MealDetailsSheetProps {
   meal: Meal | null;
@@ -84,9 +85,12 @@ export function MealDetailsSheet({
           <div className="pb-10">
             {/* Cover Image */}
             <div className="relative h-48 w-full overflow-hidden">
-              <img
+              <Image
                 src={meal.coverImg}
                 alt={meal.name}
+                width={500}
+                height={300}
+                unoptimized
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

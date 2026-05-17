@@ -82,7 +82,7 @@ const Navbar1 = ({ logo, menu, auth, className }: Navbar1Props) => {
               <DropDownMenu
                 name={session?.user?.name}
                 image={session?.user?.image || ""}
-                role={(session?.user as any)?.role}
+                role={session?.user?.role || ""}
               />
             ) : (
               <div className="flex justify-center items-center gap-4">
@@ -127,7 +127,7 @@ const Navbar1 = ({ logo, menu, auth, className }: Navbar1Props) => {
                 <DropDownMenu
                   name={session?.user?.name}
                   image={session?.user?.image || ""}
-                  role={(session?.user as any)?.role}
+                  role={session?.user?.role || ""}
                 />
               )}
               <Sheet>

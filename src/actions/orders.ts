@@ -25,7 +25,7 @@ export const cancelOrderAction = async (id: string) => {
 
     updateTag('AllOrdersItems');
     return data;
-  } catch (error) {
+  } catch {
     return {
       success: false,
       message: 'Something went wrong. Please try again later',
@@ -33,7 +33,7 @@ export const cancelOrderAction = async (id: string) => {
     };
   }
 };
-export const updateOrderItemsAction = async (id: string, data: any) => {
+export const updateOrderItemsAction = async (id: string, data: unknown) => {
   try {
     const cookieStore = await cookies();
 
@@ -54,7 +54,7 @@ export const updateOrderItemsAction = async (id: string, data: any) => {
 
     updateTag('AllOrdersItems');
     return result;
-  } catch (error) {
+  } catch {
     return {
       success: false,
       message: 'Something went wrong. Please try again later',
@@ -63,7 +63,7 @@ export const updateOrderItemsAction = async (id: string, data: any) => {
   }
 };
 
-export const updateOrderItemStatusAction = async (id: string, status: any) => {
+export const updateOrderItemStatusAction = async (id: string, status: unknown) => {
   try {
     const res = await fetch(
       `${env.NEXT_PUBLIC_BACKEND_API_URL}orders/update-order-item-status/${id}`,
@@ -80,7 +80,7 @@ export const updateOrderItemStatusAction = async (id: string, status: any) => {
     const data = await res.json();
     updateTag('AllOrdersItems');
     return data;
-  } catch (error) {
+  } catch {
     return {
       success: false,
       message: 'Something went wrong. Please try again later',

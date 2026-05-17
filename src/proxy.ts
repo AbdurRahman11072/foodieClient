@@ -1,17 +1,17 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { userRole } from "./constants";
-import { authClient } from "./lib/auth-client";
+import { userService } from "./services/user.service";
 
 // This function can be marked `async` if using `await` inside
 export async function proxy(request: NextRequest) {
-  const { data: userSession } = await authClient.useSession();
+  const userSession = await userService.getUserSession();
 
   console.log("proxy", userSession);
 
   const currentPath = request.nextUrl.pathname;
   // console.log(currentPath);
 
-  const role = (userSession?.user as any)?.role;
+  const role = userSession?.user?.role;
 
   const isUserAuthorized =
     role === userRole.provider || role === userRole.admin;
@@ -38,7 +38,7 @@ export async function proxy(request: NextRequest) {
   if (
     currentPath.startsWith("/restaurants/create-restaurant") &&
     userSession &&
-    (userSession.user as any)?.restaurantId
+    userSession.user?.restaurantId
   ) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
