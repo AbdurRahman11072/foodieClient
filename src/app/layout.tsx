@@ -33,21 +33,30 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Foodie" }],
   creator: "Foodie",
-  metadataBase: new URL("https://foodie-client-one.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://foodie-client-one.vercel.app"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://foodie-client-one.vercel.app",
+    url: process.env.NEXT_PUBLIC_APP_URL || "https://foodie-client-one.vercel.app",
     siteName: "Foodie",
     title: "Foodie — Order Food Online",
     description:
       "Discover top-rated restaurants and get your favourite meals delivered fast.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Foodie — Order Food Online",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Foodie — Order Food Online",
     description:
       "Discover top-rated restaurants and get your favourite meals delivered fast.",
+    images: ["/og-image.jpg"],
   },
 };
 
