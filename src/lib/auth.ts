@@ -27,5 +27,5 @@ export const auth = betterAuth({
     },
   },
   plugins: [admin(), nextCookies()],
-  trustHost: process.env.NODE_ENV !== "development",
+
 });
