@@ -3,8 +3,12 @@ import { MealsTable } from '@/components/modules/dashboard/meals/meals-table';
 import mealService from '@/services/meals.service';
 import { userService } from '@/services/user.service';
 import { SessionData } from '@/types/session';
+import type { Metadata } from 'next';
 
-
+export const metadata: Metadata = {
+  title: 'Manage Meals',
+  description: 'Add, edit, and manage your restaurant menu items.',
+};
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

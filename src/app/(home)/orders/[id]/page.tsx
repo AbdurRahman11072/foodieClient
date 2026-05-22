@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import OrderDetails from '@/components/modules/home/orders/DetailsPage/orderDetails';
 import OrderSummary from '@/components/modules/home/orders/DetailsPage/orderSummary';
 import orderService from '@/services/order.service';
@@ -7,7 +8,17 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  return {
+    title: `Order #${id.slice(0, 8).toUpperCase()}`,
+    description: `View the details, status, and items for your Foodie order #${id.slice(0, 8).toUpperCase()}.`,
+  };
+}
 
 const OrderDetailPage = async ({
   params,

@@ -6,8 +6,12 @@ import orderService from '@/services/order.service';
 import { userService } from '@/services/user.service';
 import { OrderItem } from '@/types/order';
 import { SessionData } from '@/types/session';
+import type { Metadata } from 'next';
 
-
+export const metadata: Metadata = {
+  title: 'Manage Orders',
+  description: 'View, track, and manage customer orders for your restaurant.',
+};
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

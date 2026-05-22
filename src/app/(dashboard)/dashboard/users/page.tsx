@@ -1,5 +1,11 @@
 import { userService } from '@/services/user.service';
 import { UsersTable } from '@/components/modules/dashboard/users/usersTable';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Manage Users',
+  description: 'View and manage registered users on Foodie.',
+};
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

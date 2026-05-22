@@ -1,12 +1,18 @@
+import type { Metadata } from 'next';
 import SettingsForm from '@/components/modules/home/profile/SettingsForm';
 import { userService } from '@/services/user.service';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 
-export const metadata = {
-  title: 'Settings | Foodie',
-  description: 'Manage your account settings.',
+export const metadata: Metadata = {
+  title: 'Settings',
+  description:
+    'Update your Foodie account settings including personal information, password, and preferences.',
+  openGraph: {
+    title: 'Account Settings | Foodie',
+    description: 'Manage your Foodie account settings.',
+  },
 };
 
 

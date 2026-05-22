@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import ProfileCard from '@/components/modules/home/profile/ProfileCard';
 import ProfileHeader from '@/components/modules/home/profile/ProfileHeader';
 import RestaurantCard from '@/components/modules/home/profile/RestaurantCard';
@@ -6,9 +7,14 @@ import type { Restaurant } from '@/types/restaurant';
 import { userService } from '@/services/user.service';
 
 
-export const metadata = {
-  title: 'Profile | Foodie',
-  description: 'Manage your profile and settings.',
+export const metadata: Metadata = {
+  title: 'Profile',
+  description:
+    'Manage your Foodie profile, personal information, and linked restaurant details.',
+  openGraph: {
+    title: 'Profile | Foodie',
+    description: 'View and update your Foodie account profile.',
+  },
 };
 
 export default async function ProfilePage() {

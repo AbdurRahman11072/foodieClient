@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { EmptyOrdersState } from '@/components/modules/home/orders/emptyOrder';
 import MainOrder from '@/components/modules/home/orders/mainOrder';
 import orderService from '@/services/order.service';
@@ -6,6 +7,15 @@ import { Order } from '@/types/order';
 
 // Status configuration using CSS variables
 
+export const metadata: Metadata = {
+  title: 'My Orders',
+  description:
+    'View and track all your Foodie orders. Check order status, delivery updates, and order history.',
+  openGraph: {
+    title: 'My Orders | Foodie',
+    description: 'Track and manage all your Foodie food orders.',
+  },
+};
 
 const OrderPage = async () => {
   const session = await userService.getUserSession();
@@ -13,19 +23,11 @@ const OrderPage = async () => {
   if (!session) return null;
 
   const response = await orderService.getAllOrderByUserId(session.user.id);
-  
-  // Debug dump for agent
-  require('fs').writeFileSync('C:\\Users\\MD. Abdur Rahman\\.gemini\\antigravity-ide\\brain\\22f69265-c7f7-4eca-ba02-0b47f2ae3c1a\\scratch\\debug_orders.json', JSON.stringify(response, null, 2));
+
 
   // Handle different potential backend payload structures
-  let orders: Order[] = [];
-  if (Array.isArray(response?.data)) {
-    orders = response.data;
-  } else if (Array.isArray(response?.data?.data)) {
-    orders = response.data.data;
-  } else if (Array.isArray(response)) {
-    orders = response;
-  }
+  let orders: Order[] = response?.data?.data || []
+
 
   if (!orders || orders.length === 0) {
     return <EmptyOrdersState />;

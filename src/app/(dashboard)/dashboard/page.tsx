@@ -6,8 +6,12 @@ import { PopularMeals, RecentRestaurants, NewUsers } from '@/components/modules/
 import { LayoutDashboard, Sparkles } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import AnalyticsCharts from '@/components/modules/dashboard/analytics/AnalyticsCharts';
+import type { Metadata } from 'next';
 
-
+export const metadata: Metadata = {
+  title: 'Dashboard',
+  description: 'Manage your restaurant, view statistics, and monitor performance.',
+};
 
 const Dashboard = async () => {
   const session = await userService.getUserSession();

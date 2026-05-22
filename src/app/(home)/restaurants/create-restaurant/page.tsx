@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import AddRestaurantForm from '@/components/modules/home/restaurants/restaurantForm';
+
+export const metadata: Metadata = {
+  title: 'Create Restaurant',
+  description:
+    'Register your restaurant on Foodie. Set up your menu, delivery zones, and start receiving orders today.',
+  openGraph: {
+    title: 'Create Restaurant | Foodie',
+    description: 'Register your restaurant on Foodie and start receiving orders.',
+  },
+};
 import { userService } from '@/services/user.service';
 
 

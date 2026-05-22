@@ -1,5 +1,11 @@
 import AddCategory from '@/components/modules/dashboard/category/addCategory';
 import AllCategory from '@/components/modules/dashboard/category/allCategory';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Categories',
+  description: 'Manage meal categories for your restaurant.',
+};
 
 const CategoryPage = () => {
   return (

@@ -4,8 +4,12 @@ import { userService } from '@/services/user.service';
 import Stats from '@/components/modules/dashboard/stats';
 import AnalyticsCharts from '@/components/modules/dashboard/analytics/AnalyticsCharts';
 import { TrendingUp } from 'lucide-react';
+import type { Metadata } from 'next';
 
-
+export const metadata: Metadata = {
+  title: 'Analytics',
+  description: 'View detailed performance insights and visual analytics for your restaurant.',
+};
 
 const AnalyticsPage = async () => {
   const session = await userService.getUserSession();

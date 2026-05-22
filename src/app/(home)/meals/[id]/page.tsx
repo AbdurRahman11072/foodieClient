@@ -1,9 +1,29 @@
+import type { Metadata } from 'next';
 import MealDetailsCard from '@/components/modules/home/meals/mealDetails';
 import mealService from '@/services/meals.service';
 import { userService } from '@/services/user.service';
 import Link from 'next/link';
 
-
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const mealData = await mealService.getMealDetailsById(id);
+  const meal = mealData?.data?.[0] ?? mealData?.data;
+  const name = meal?.name ?? 'Meal Details';
+  return {
+    title: name,
+    description:
+      meal?.description ??
+      `Explore ${name} on Foodie — view ingredients, price, and add to your cart.`,
+    openGraph: {
+      title: `${name} | Foodie`,
+      description: meal?.description ?? `Order ${name} on Foodie.`,
+    },
+  };
+}
 
 const MealDetailPage = async ({
   params,
