@@ -1,11 +1,10 @@
 'use server';
 
-import { env } from '@/env';
 import { CreateReviewType } from '@/types/review';
 
 export const CreateReviewAction = async (reviewData: CreateReviewType) => {
   try {
-    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_API_URL}reviews`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}reviews`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

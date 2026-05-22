@@ -1,25 +1,23 @@
-import { env } from "@/env";
-import { authClient } from "@/lib/auth-client";
-import { cookies, headers } from "next/headers";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import type { SessionData } from "@/types/session";
 
-export const userService = {
-  getUserSession: async () => {
-    try {
-      const { data: session } = await authClient.getSession({
-        fetchOptions: {
-          headers: await headers(),
-        },
-      });
+const userService = {
+  getUserSession: async (): Promise<SessionData | null> => {
+    const SessionData = await auth.api.getSession({
+      headers: await headers(),
+    });
 
-      if (!session) {
-        return null;
-      }
-      return session;
-    } catch (error) {
-      return null;
-    }
+    return SessionData as any;
   },
+};
 
+export default userService;
+
+import { cookies } from "next/headers";
+
+const extendedUserService = {
+  ...userService,
   getAllUsers: async (page: number = 1, limit: number = 10) => {
     try {
       const cookieStore = await cookies();
@@ -28,7 +26,7 @@ export const userService = {
       params.append("limit", limit.toString());
 
       const res = await fetch(
-        `${env.NEXT_PUBLIC_BACKEND_API_URL}users?${params.toString()}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}users?${params.toString()}`,
         {
           headers: {
             Cookie: cookieStore.toString(),
@@ -43,7 +41,7 @@ export const userService = {
       }
 
       return data;
-    } catch (error) {
+    } catch {
       return {
         success: false,
         message: "Something went wrong",
@@ -52,3 +50,5 @@ export const userService = {
     }
   },
 };
+
+export { extendedUserService as userService };

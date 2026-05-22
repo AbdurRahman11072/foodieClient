@@ -11,7 +11,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { env } from '@/env';
 import { categoryService } from '@/services/category.service';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { authClient } from '@/lib/auth-client';
 import { PlusCircle } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -49,10 +48,12 @@ interface Category {
   updatedAt: string;
 }
 
-export default function AddMealForm() {
+export default function AddMealForm({
+  restaurantId,
+}: {
+  restaurantId: string;
+}) {
   const router = useRouter();
-  const { data: session } = authClient.useSession();
-  const restaurantId = session?.user?.restaurantId || '';
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [coverImagePreview, setCoverImagePreview] = useState<string>('');
@@ -60,6 +61,7 @@ export default function AddMealForm() {
 
   const {
     control,
+    register,
     handleSubmit,
     formState: { errors },
     reset,
@@ -91,7 +93,7 @@ export default function AddMealForm() {
         }
 
         setCategories(response.data);
-      } catch {
+      } catch (error) {
         toast.error('Failed to fetch categories');
       }
     };
@@ -137,7 +139,7 @@ export default function AddMealForm() {
       imageFile.append('coverImg', data.coverImg as File);
 
       const imageUploadResponse = await fetch(
-        `${env.NEXT_PUBLIC_BACKEND_API_URL}upload-image`,
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}upload-image`,
         {
           method: 'POST',
           body: imageFile,

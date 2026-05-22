@@ -1,0 +1,17 @@
+model reviews {
+  id          String   @id @default(uuid())
+  userId      String
+  userName    String
+  userImg     String?
+  restaurantId String
+  mealId       String
+  rating      Int
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user  User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  restaurant restaurants @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  meal meals @relation(fields: [mealId], references: [id], onDelete: Cascade)
+  
+}

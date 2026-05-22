@@ -5,14 +5,13 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { env } from '@/env';
 import { CartItem } from '@/types/cart';
+import { SessionData } from '@/types/session';
 import { ArrowLeft, Clock, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
-import { authClient } from '@/lib/auth-client';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-export default function CheckoutPage() {
-  const { data: session } = authClient.useSession();
+export default function CheckoutPage({ session }: { session: SessionData }) {
   const [formData, setFormData] = useState({
     address: '',
     phone: '',
@@ -80,7 +79,7 @@ export default function CheckoutPage() {
         items: cart,
       };
 
-      const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_API_URL}orders`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData),

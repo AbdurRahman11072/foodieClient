@@ -1,6 +1,7 @@
 'use client';
 
 import { Card, CardContent } from '@/components/ui/card';
+import { SessionData } from '@/types/session';
 import { 
   Utensils, 
   ShoppingBag, 
@@ -16,19 +17,17 @@ type stats = {
   totalEarning?: number;
   totalUser?: number;
   activeUser?: number;
-  revenueData?: { totalPrice: number }[];
-  topMeals?: unknown[];
-  orderStatusDistribution?: unknown[];
+  revenueData?: any[];
+  topMeals?: any[];
+  orderStatusDistribution?: any[];
 };
 
-import { authClient } from '@/lib/auth-client';
-
 type statsType = {
+  session: SessionData | null;
   statsData: stats;
 };
 
-export default function Stats({ statsData }: statsType) {
-  const { data: session } = authClient.useSession();
+export default function Stats({ session, statsData }: statsType) {
   const total7dRevenue = statsData.revenueData?.reduce((sum, o) => sum + o.totalPrice, 0) || 0;
 
   let data = [

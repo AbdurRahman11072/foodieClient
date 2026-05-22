@@ -6,25 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { ShoppingBag, Store, Users, ExternalLink } from 'lucide-react';
 
-interface PopularMealItem {
-  mealName: string;
-  _count: { mealId: number };
-}
-
-interface RecentRestaurantItem {
-  name: string;
-  logo?: string;
-  address?: string;
-}
-
-interface NewUserItem {
-  name: string;
-  image?: string;
-  email: string;
-  role: string;
-}
-
-export const PopularMeals = ({ meals }: { meals: PopularMealItem[] }) => {
+export const PopularMeals = ({ meals }: { meals: any[] }) => {
   return (
     <Card className="border-none bg-white/50 backdrop-blur-md dark:bg-zinc-900/50 shadow-sm transition-all duration-300 hover:shadow-md">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -68,7 +50,7 @@ export const PopularMeals = ({ meals }: { meals: PopularMealItem[] }) => {
   );
 };
 
-export const RecentRestaurants = ({ restaurants }: { restaurants: RecentRestaurantItem[] }) => {
+export const RecentRestaurants = ({ restaurants }: { restaurants: any[] }) => {
   return (
     <Card className="border-none bg-white/50 backdrop-blur-md dark:bg-zinc-900/50 shadow-sm transition-all duration-300 hover:shadow-md">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -106,7 +88,7 @@ export const RecentRestaurants = ({ restaurants }: { restaurants: RecentRestaura
   );
 };
 
-export const NewUsers = ({ users }: { users: NewUserItem[] }) => {
+export const NewUsers = ({ users }: { users: any[] }) => {
   return (
     <Card className="border-none bg-white/50 backdrop-blur-md dark:bg-zinc-900/50 shadow-sm transition-all duration-300 hover:shadow-md">
       <CardHeader className="flex flex-row items-center justify-between pb-2">

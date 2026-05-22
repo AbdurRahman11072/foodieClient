@@ -14,8 +14,8 @@ const mealService = {
 
       const url =
         role === "admin"
-          ? `${env.NEXT_PUBLIC_BACKEND_API_URL}meals?${params.toString()}` // get all meals
-          : `${env.NEXT_PUBLIC_BACKEND_API_URL}meals/restaurant/${id}?${params.toString()}`; // get meals by restaurant id
+          ? `${process.env.NEXT_PUBLIC_BACKEND_API_URL}meals?${params.toString()}` // get all meals
+          : `${process.env.NEXT_PUBLIC_BACKEND_API_URL}meals/restaurant/${id}?${params.toString()}`; // get meals by restaurant id
       const res = await fetch(url, {
         cache: "no-store",
         next: { tags: ["AllMeals"] },
@@ -39,7 +39,7 @@ const mealService = {
   featuredMeal: async () => {
     try {
       const res = await fetch(
-        `${env.NEXT_PUBLIC_BACKEND_API_URL}meals/featured-meal`,
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}meals/featured-meal`,
       );
       const data = await res.json();
 
@@ -81,7 +81,7 @@ const mealService = {
 
       const queryString = params.toString();
 
-      const url = `${env.NEXT_PUBLIC_BACKEND_API_URL}meals${queryString ? `?${queryString}` : ""}`;
+      const url = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}meals${queryString ? `?${queryString}` : ""}`;
 
       const res = await fetch(url);
       const data = await res.json();
@@ -96,7 +96,7 @@ const mealService = {
     }
   },
   getMealDetailsById: async (id: string) => {
-    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_API_URL}meals/${id}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}meals/${id}`);
     const data = await res.json();
 
     return data;

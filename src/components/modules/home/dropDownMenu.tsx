@@ -43,7 +43,7 @@ const DropDownMenu = ({
         router.push('/');
         router.refresh();
       }
-    } catch {
+    } catch (error) {
       toast.error('Something went wrong. Please try again later', {
         id: toastId,
       });

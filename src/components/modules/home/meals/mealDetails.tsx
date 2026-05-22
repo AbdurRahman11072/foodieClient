@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { CartItem } from '@/types/cart';
+import { SessionData } from '@/types/session';
 import {
   ArrowLeft,
   Heart,
@@ -41,9 +42,10 @@ interface MealDetailsCardProps {
       closingTime: string;
     };
   };
+  session: SessionData | null;
 }
 
-const MealDetailsCard = ({ meal }: MealDetailsCardProps) => {
+const MealDetailsCard = ({ meal, session }: MealDetailsCardProps) => {
   const router = useRouter();
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);

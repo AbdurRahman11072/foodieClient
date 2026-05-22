@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Order, STATUS_CONFIG } from '@/types/order';
+import { SessionData } from '@/types/session';
 import {
   ArrowRight,
   Calendar,
@@ -22,9 +23,10 @@ import { OrderItems } from './orderItem';
 
 interface OrderCardProps {
   order: Order;
+  session: SessionData;
 }
 
-export function OrderCard({ order }: OrderCardProps) {
+export function OrderCard({ order, session }: OrderCardProps) {
   const StatusIcon = STATUS_CONFIG[order.status]?.icon || Package;
   const statusConfig = STATUS_CONFIG[order.status] || STATUS_CONFIG.PREPARING;
 
@@ -150,6 +152,7 @@ export function OrderCard({ order }: OrderCardProps) {
         {/* Order Items - Separate Component */}
         <OrderItems
           items={order.items}
+          session={session}
           orderStatus={order.status}
         />
 

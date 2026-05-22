@@ -1,0 +1,14 @@
+import AddRestaurantForm from '@/components/modules/home/restaurants/restaurantForm';
+import { userService } from '@/services/user.service';
+
+
+
+const CreateRestaurant = async () => {
+  const session = await userService.getUserSession();
+
+  if (!session?.user?.id) return null;
+
+  return <AddRestaurantForm ownerId={session.user.id} />;
+};
+
+export default CreateRestaurant;

@@ -26,15 +26,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { MenuItem, Navbar1Props } from "@/types/navbar";
 import Image from "next/image";
 import Link from "next/link";
 import DropDownMenu from "./dropDownMenu";
 
-const Navbar1 = ({ logo, menu, auth, className }: Navbar1Props) => {
-  const { data: session } = authClient.useSession();
+const Navbar1 = ({ logo, menu, auth, session, className }: Navbar1Props) => {
+  console.log("session: ", session);
 
   return (
     <section className={cn("py-4 border-b shadow-sm", className)}>
@@ -82,7 +81,7 @@ const Navbar1 = ({ logo, menu, auth, className }: Navbar1Props) => {
               <DropDownMenu
                 name={session?.user?.name}
                 image={session?.user?.image || ""}
-                role={session?.user?.role || ""}
+                role={(session?.user as any)?.role}
               />
             ) : (
               <div className="flex justify-center items-center gap-4">
@@ -127,7 +126,7 @@ const Navbar1 = ({ logo, menu, auth, className }: Navbar1Props) => {
                 <DropDownMenu
                   name={session?.user?.name}
                   image={session?.user?.image || ""}
-                  role={session?.user?.role || ""}
+                  role={(session?.user as any)?.role}
                 />
               )}
               <Sheet>

@@ -20,7 +20,6 @@ import { Input } from '@/components/ui/input';
 import { env } from '@/env';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PencilIcon, UploadIcon } from 'lucide-react';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -89,7 +88,7 @@ const UpdateCategory = ({
         imageFile.append('coverImg', formData.coverImg);
 
         const imageUrl = await fetch(
-          `${env.NEXT_PUBLIC_BACKEND_API_URL}upload-image`,
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}upload-image`,
           {
             method: 'POST',
             body: imageFile,
@@ -114,7 +113,7 @@ const UpdateCategory = ({
       setOpen(false);
 
       toast.success('Category updated successfully', { id: toastId });
-    } catch {
+    } catch (error) {
       toast.error('Error updating category', { id: toastId });
     } finally {
       setIsLoading(false);
@@ -173,12 +172,9 @@ const UpdateCategory = ({
                     >
                       {previewUrl ? (
                         <div className="space-y-2">
-                          <Image
+                          <img
                             src={previewUrl}
                             alt="Preview"
-                            width={200}
-                            height={200}
-                            unoptimized
                             className="max-h-32 mx-auto object-contain"
                           />
                           <p className="text-sm text-gray-500">

@@ -1,0 +1,60 @@
+model restaurants {
+  id          String   @id @default(uuid())
+  ownerId     String @unique
+  name        String
+  coverImg    String
+  avatarImg   String
+  description String
+  openingTime String
+  closingTime String
+  offday      String
+  rating      Float @default(0)
+  banned      Boolean @default(false)
+  createdAt   DateTime @default(now()) 
+  updatedAt   DateTime @updatedAt
+
+  meals       meals[]
+  orderItem orderItems[]
+  reviews reviews[]
+  
+  user  User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+
+  @@index([ownerId])
+  @@index([name])
+  @@index([rating])
+  @@index([banned])
+}
+
+enum MealStatus {
+  DRFT
+  PUBLISHED
+}
+
+model meals {
+  id            String     @id @default(uuid())
+  restaurantId  String
+  name          String
+  coverImg      String
+  description   String
+  price         Float
+  rating        Float   @default(0)
+  categories      categories[]
+  available     Boolean
+  ingredients   String[]
+  calories      Int
+  servingSize   String
+  status        MealStatus @default(DRFT)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt  
+
+  orderItem orderItems[]
+  reviews   reviews[]
+  restaurant restaurants @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  
+  @@index([restaurantId])
+  @@index([available])
+  @@index([name])
+  @@index([price])
+  @@index([rating])
+}

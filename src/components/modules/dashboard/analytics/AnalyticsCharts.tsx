@@ -26,48 +26,11 @@ const CHART_COLORS = [
   'oklch(0.42 0.18 266)',
 ];
 
-interface RevenueItem {
-  createdAt: string;
-  totalPrice: number;
-}
-
-interface TopMealItem {
-  mealName: string;
-  _count: { mealId: number };
-}
-
-interface OrderStatusItem {
-  status: string;
-  _count: { status: number };
-}
-
-interface StatsData {
-  revenueData?: RevenueItem[];
-  topMeals?: TopMealItem[];
-  orderStatusDistribution?: OrderStatusItem[];
-}
-
 interface AnalyticsChartsProps {
-  statsData?: StatsData | null;
+  statsData: any;
 }
 
-interface TooltipPayload {
-  value: number;
-}
-
-interface CustomTooltipProps {
-  active?: boolean;
-  payload?: TooltipPayload[];
-  label?: string;
-  prefix?: string;
-}
-
-interface AccRevenueItem {
-  date: string;
-  revenue: number;
-}
-
-const CustomTooltip = ({ active, payload, label, prefix = '' }: CustomTooltipProps) => {
+const CustomTooltip = ({ active, payload, label, prefix = '' }: any) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border border-border p-3 rounded-xl shadow-xl">
@@ -85,7 +48,7 @@ const AnalyticsCharts = ({ statsData }: AnalyticsChartsProps) => {
   if (!statsData) return <div>No data available</div>;
 
   // Format Revenue Data
-  const formattedRevenue = statsData.revenueData?.reduce((acc: AccRevenueItem[], item: RevenueItem) => {
+  const formattedRevenue = statsData.revenueData?.reduce((acc: any[], item: any) => {
     const date = new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit' }).format(new Date(item.createdAt));
     const existing = acc.find((d) => d.date === date);
     if (existing) {
@@ -94,16 +57,16 @@ const AnalyticsCharts = ({ statsData }: AnalyticsChartsProps) => {
       acc.push({ date, revenue: item.totalPrice });
     }
     return acc;
-  }, []).sort((a: AccRevenueItem, b: AccRevenueItem) => new Date(a.date).getTime() - new Date(b.date).getTime()) || [];
+  }, []).sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime()) || [];
 
   // Format Top Meals
-  const formattedMeals = statsData.topMeals?.map((item: TopMealItem) => ({
+  const formattedMeals = statsData.topMeals?.map((item: any) => ({
     name: item.mealName,
     orders: item._count.mealId,
   })) || [];
 
   // Format Order Status
-  const formattedStatus = statsData.orderStatusDistribution?.map((item: OrderStatusItem) => ({
+  const formattedStatus = statsData.orderStatusDistribution?.map((item: any) => ({
     name: item.status,
     value: item._count.status,
   })) || [];
@@ -206,7 +169,7 @@ const AnalyticsCharts = ({ statsData }: AnalyticsChartsProps) => {
                   dataKey="value"
                   stroke="none"
                 >
-                  {formattedStatus.map((entry: { name: string; value: number }, index: number) => (
+                  {formattedStatus.map((entry: any, index: number) => (
                     <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
                   ))}
                 </Pie>

@@ -1,0 +1,7 @@
+- add sooner
+- add navbar with navigation
+- create auth folder then create login / register page
+- create action for login and register
+- test login and register action
+- get user session from better auth
+- create proxy file to test user session and make private route

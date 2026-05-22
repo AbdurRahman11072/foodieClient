@@ -1,8 +1,6 @@
 'use server';
 
-import { env } from '@/env';
 import { updateTag } from 'next/cache';
-
 import { cookies } from 'next/headers';
 
 export const cancelOrderAction = async (id: string) => {
@@ -10,7 +8,7 @@ export const cancelOrderAction = async (id: string) => {
     const cookieStore = await cookies();
 
     const res = await fetch(
-      `${env.NEXT_PUBLIC_BACKEND_API_URL}orders/cancel-order/${id}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}orders/cancel-order/${id}`,
       {
         method: 'PUT',
         headers: {
@@ -25,7 +23,7 @@ export const cancelOrderAction = async (id: string) => {
 
     updateTag('AllOrdersItems');
     return data;
-  } catch {
+  } catch (error) {
     return {
       success: false,
       message: 'Something went wrong. Please try again later',
@@ -33,12 +31,12 @@ export const cancelOrderAction = async (id: string) => {
     };
   }
 };
-export const updateOrderItemsAction = async (id: string, data: unknown) => {
+export const updateOrderItemsAction = async (id: string, data: any) => {
   try {
     const cookieStore = await cookies();
 
     const res = await fetch(
-      `${env.NEXT_PUBLIC_BACKEND_API_URL}orders/update-order-items/${id}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}orders/update-order-items/${id}`,
       {
         method: 'PUT',
         headers: {
@@ -54,7 +52,7 @@ export const updateOrderItemsAction = async (id: string, data: unknown) => {
 
     updateTag('AllOrdersItems');
     return result;
-  } catch {
+  } catch (error) {
     return {
       success: false,
       message: 'Something went wrong. Please try again later',
@@ -63,10 +61,10 @@ export const updateOrderItemsAction = async (id: string, data: unknown) => {
   }
 };
 
-export const updateOrderItemStatusAction = async (id: string, status: unknown) => {
+export const updateOrderItemStatusAction = async (id: string, status: any) => {
   try {
     const res = await fetch(
-      `${env.NEXT_PUBLIC_BACKEND_API_URL}orders/update-order-item-status/${id}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}orders/update-order-item-status/${id}`,
       {
         method: 'PATCH',
         headers: {
@@ -80,7 +78,7 @@ export const updateOrderItemStatusAction = async (id: string, status: unknown) =
     const data = await res.json();
     updateTag('AllOrdersItems');
     return data;
-  } catch {
+  } catch (error) {
     return {
       success: false,
       message: 'Something went wrong. Please try again later',

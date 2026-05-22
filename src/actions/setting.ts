@@ -1,6 +1,5 @@
 'use server';
 
-import { env } from '@/env';
 import { cookies } from 'next/headers';
 
 export const updateUserProfileAction = async (
@@ -10,7 +9,7 @@ export const updateUserProfileAction = async (
   try {
     const cookieStore = await cookies();
 
-    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_API_URL}users/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}users/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -38,14 +37,14 @@ export const changePasswordAction = async (data: {
     const cookieStore = await cookies();
 
     const res = await fetch(
-      `${env.NEXT_PUBLIC_BACKEND_BETTER_AUTH_URL}change-password`,
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/change-password`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Cookie: cookieStore.toString(),
-          Origin: env.NEXT_PUBLIC_APP_URL,
-          Referer: env.NEXT_PUBLIC_APP_URL,
+          Origin: process.env.NEXT_PUBLIC_APP_URL!,
+          Referer: process.env.NEXT_PUBLIC_APP_URL!,
         },
         body: JSON.stringify({
           newPassword: data.newPassword,

@@ -15,6 +15,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
+import { SessionData } from '@/types/session';
 import {
   BarChart3,
   ChevronDown,
@@ -27,11 +28,9 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { authClient } from '@/lib/auth-client';
 import { useState } from 'react';
 
-export function AppSidebar() {
-  const { data: session } = authClient.useSession();
+export function AppSidebar({ session }: { session: SessionData | null }) {
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({
     products: false,
     billing: false,

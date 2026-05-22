@@ -16,8 +16,8 @@ const orderService = {
 
       const url =
         role === 'admin'
-          ? `${env.NEXT_PUBLIC_BACKEND_API_URL}orders/order-item?${params.toString()}` // get all meals
-          : `${env.NEXT_PUBLIC_BACKEND_API_URL}orders/order-item/${id}?${params.toString()}`;
+          ? `${process.env.NEXT_PUBLIC_BACKEND_API_URL}orders/order-item?${params.toString()}` // get all meals
+          : `${process.env.NEXT_PUBLIC_BACKEND_API_URL}orders/order-item/${id}?${params.toString()}`;
       const res = await fetch(url, {
         headers: {
           Cookie: cookieStore.toString(),
@@ -43,14 +43,28 @@ const orderService = {
   },
 
   getAllOrderByUserId: async (id: string) => {
-    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_API_URL}orders/${id}`);
+    const cookieStore = await cookies();
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}orders/${id}`, {
+      headers: {
+        Cookie: cookieStore.toString(),
+      },
+      cache: 'no-store',
+    });
     const data = await res.json();
 
     return data;
   },
+
   getAllOrderByOrderId: async (id: string) => {
+    const cookieStore = await cookies();
     const res = await fetch(
-      `${env.NEXT_PUBLIC_BACKEND_API_URL}orders/order-id/${id}`
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}orders/order-id/${id}`,
+      {
+        headers: {
+          Cookie: cookieStore.toString(),
+        },
+        cache: 'no-store',
+      }
     );
     const data = await res.json();
 

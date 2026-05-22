@@ -8,7 +8,7 @@ const restaurantService = {
       params.append('limit', limit.toString());
 
       const res = await fetch(
-        `${env.NEXT_PUBLIC_BACKEND_API_URL}restaurants?${params.toString()}`
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}restaurants?${params.toString()}`
       );
       const data = await res.json();
 
@@ -28,7 +28,7 @@ const restaurantService = {
   featuredMeal: async () => {
     try {
       const res = await fetch(
-        `${env.NEXT_PUBLIC_BACKEND_API_URL}restaurants/featured-meal`,
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}restaurants/featured-meal`,
         {
           next: { revalidate: 43200 },
         }
@@ -49,7 +49,7 @@ const restaurantService = {
   getRestaurantById: async (id: string) => {
     try {
       const res = await fetch(
-        `${env.NEXT_PUBLIC_BACKEND_API_URL}restaurants/${id}`
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}restaurants/${id}`
       );
       const data = await res.json();
 

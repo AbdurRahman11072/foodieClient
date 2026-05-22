@@ -88,7 +88,7 @@ const ProfileInfoForm = ({
         formData.append('coverImg', imageFile);
 
         const uploadRes = await fetch(
-          `${env.NEXT_PUBLIC_BACKEND_API_URL}upload-image`,
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}upload-image`,
           { method: 'POST', body: formData }
         );
         const uploadData = await uploadRes.json();

@@ -1,5 +1,5 @@
 'use server';
-import { env } from '@/env';
+
 import { updateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
@@ -10,7 +10,7 @@ export const CreateCategoryAction = async (category: {
   try {
     const cookieStore = await cookies();
 
-    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_API_URL}category`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}category`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export const DeleteCategoryAction = async (id: string) => {
     const cookieStore = await cookies();
 
     const res = await fetch(
-      `${env.NEXT_PUBLIC_BACKEND_API_URL}category/${id}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}category/${id}`,
       {
         method: 'DELETE',
         headers: {
@@ -76,7 +76,7 @@ export const UpdateCategoryAction = async (
     const cookieStore = await cookies();
 
     const res = await fetch(
-      `${env.NEXT_PUBLIC_BACKEND_API_URL}category/${id}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}category/${id}`,
       {
         method: 'PUT',
         headers: {

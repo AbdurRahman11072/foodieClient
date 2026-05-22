@@ -4,19 +4,24 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { TableCell, TableRow } from '@/components/ui/table';
-import { OrderItem } from '@/types/order';
+import { OrderItem, STATUS_CONFIG } from '@/types/order';
 import { Eye } from 'lucide-react';
 import Image from 'next/image';
 import { OrderStatusDropdown } from './orderStatus';
 
 interface OrderRowProps {
   orderItem: OrderItem;
+  onStatusChange?: (
+    orderItemId: string,
+    newStatus: keyof typeof STATUS_CONFIG
+  ) => Promise<void>;
   onViewDetails?: (orderItem: OrderItem) => void;
   role: string;
 }
 
 export function OrderRow({
   orderItem,
+  onStatusChange,
   onViewDetails,
   role,
 }: OrderRowProps) {

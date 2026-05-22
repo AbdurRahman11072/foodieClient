@@ -1,13 +1,13 @@
 'use server';
-import { env } from '@/env';
+
 import { updateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
-export const CreateMealAction = async (meal: unknown) => {
+export const CreateMealAction = async (meal: any) => {
   try {
     const cookieStore = await cookies();
 
-    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_API_URL}meals`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}meals`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,11 +34,11 @@ export const CreateMealAction = async (meal: unknown) => {
   }
 };
 
-export const UpdateMealAction = async (meal: unknown, id: string) => {
+export const UpdateMealAction = async (meal: any, id: string) => {
   try {
     const cookieStore = await cookies();
 
-    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_API_URL}meals/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}meals/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

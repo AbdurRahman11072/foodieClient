@@ -52,6 +52,7 @@ interface UpdateMealSheetProps {
   meal: Meal | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  restaurantId: string;
   onSuccess?: () => void;
 }
 
@@ -77,6 +78,7 @@ export function UpdateMealSheet({
   meal,
   open,
   onOpenChange,
+  restaurantId,
   onSuccess,
 }: UpdateMealSheetProps) {
   const [categories, setCategories] = useState<Category[]>([]);

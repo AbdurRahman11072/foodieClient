@@ -9,7 +9,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { env } from '@/env';
 import { restaurantSchema } from '@/schema/restaurant';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { authClient } from '@/lib/auth-client';
 import { PlusCircle } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -20,10 +19,8 @@ import * as z from 'zod';
 
 type RestaurantFormData = z.infer<typeof restaurantSchema>;
 
-export default function AddRestaurantForm() {
+export default function AddRestaurantForm({ ownerId }: { ownerId: string }) {
   const router = useRouter();
-  const { data: session } = authClient.useSession();
-  const ownerId = session?.user?.id || '';
   const [coverImagePreview, setCoverImagePreview] = useState<string>('');
   const [avatarImagePreview, setAvatarImagePreview] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
@@ -82,7 +79,7 @@ export default function AddRestaurantForm() {
       coverImageFile.append('coverImg', data.coverImg as File);
 
       const coverImageUploadResponse = await fetch(
-        `${env.NEXT_PUBLIC_BACKEND_API_URL}upload-image`,
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}upload-image`,
         {
           method: 'POST',
           body: coverImageFile,
@@ -106,7 +103,7 @@ export default function AddRestaurantForm() {
         avatarImageFile.append('coverImg', data.avatarImg as File);
 
         const avatarImageUploadResponse = await fetch(
-          `${env.NEXT_PUBLIC_BACKEND_API_URL}upload-image`,
+          `${process.env.NEXT_PUBLIC_BACKEND_API_URL}upload-image`,
           {
             method: 'POST',
             body: avatarImageFile,

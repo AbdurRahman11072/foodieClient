@@ -2,14 +2,17 @@
 'use client';
 
 import { Order } from '@/types/order';
+import { SessionData } from '@/types/session';
 import { useState } from 'react';
 import { OrderCard } from './orderCard';
 
 interface MainOrderProps {
+  session: SessionData;
   orders: Order[];
 }
 
 export default function MainOrder({
+  session,
   orders: initialOrders,
 }: MainOrderProps) {
   const [orders] = useState<Order[]>(initialOrders);
@@ -30,7 +33,7 @@ export default function MainOrder({
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-6">
             {orders.map((order) => (
-              <OrderCard key={order.id} order={order} />
+              <OrderCard key={order.id} order={order} session={session} />
             ))}
           </div>
         </div>

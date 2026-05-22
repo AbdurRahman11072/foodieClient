@@ -5,7 +5,7 @@ const statsService = {
   getStats: async () => {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_API_URL}stats`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}stats`, {
         headers: {
           Cookie: cookieStore.toString(),
         },

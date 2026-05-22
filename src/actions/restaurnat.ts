@@ -1,13 +1,12 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { env } from 'process';
 
-export const CreateRestaurntsAction = async (restaurnts: unknown) => {
+export const CreateRestaurntsAction = async (restaurnts: any) => {
   try {
     const cookieStore = await cookies();
 
-    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_API_URL}restaurants`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}restaurants`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

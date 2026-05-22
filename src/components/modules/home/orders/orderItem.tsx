@@ -2,13 +2,15 @@
 'use client';
 
 import { OrderItem as OrderItemType, OrderStatus } from '@/types/order';
+import { SessionData } from '@/types/session';
 import { Package } from 'lucide-react';
 import { OrderItemCard } from './orderItemCard';
 interface OrderItemsProps {
   items: OrderItemType[];
+  session: SessionData;
   orderStatus?: OrderStatus;
 }
-export function OrderItems({ items, orderStatus }: OrderItemsProps) {
+export function OrderItems({ items, session, orderStatus }: OrderItemsProps) {
   return (
     <div className="mb-6">
       <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
@@ -21,6 +23,7 @@ export function OrderItems({ items, orderStatus }: OrderItemsProps) {
             key={item.id}
             item={item}
             orderStatus={orderStatus}
+            session={session}
           />
         ))}
       </div>

@@ -3,7 +3,7 @@ import { env } from '@/env';
 export const categoryService = {
   getAllCategory: async () => {
     try {
-      const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_API_URL}category`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}category`, {
         next: { tags: ['AllCategory'] },
       });
 
