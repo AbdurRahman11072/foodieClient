@@ -1,19 +1,19 @@
 // components/orders/order-row.tsx
-'use client';
+"use client";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { TableCell, TableRow } from '@/components/ui/table';
-import { OrderItem, STATUS_CONFIG } from '@/types/order';
-import { Eye } from 'lucide-react';
-import Image from 'next/image';
-import { OrderStatusDropdown } from './orderStatus';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { TableCell, TableRow } from "@/components/ui/table";
+import { OrderItem, STATUS_CONFIG } from "@/types/order";
+import { Eye } from "lucide-react";
+import Image from "next/image";
+import { OrderStatusDropdown } from "./orderStatus";
 
 interface OrderRowProps {
   orderItem: OrderItem;
   onStatusChange?: (
     orderItemId: string,
-    newStatus: keyof typeof STATUS_CONFIG
+    newStatus: keyof typeof STATUS_CONFIG,
   ) => Promise<void>;
   onViewDetails?: (orderItem: OrderItem) => void;
   role: string;
@@ -30,21 +30,21 @@ export function OrderRow({
   const formatDate = (dateString: string) => {
     try {
       const date = new Date(dateString);
-      return new Intl.DateTimeFormat('en-US', {
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
+      return new Intl.DateTimeFormat("en-US", {
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
       }).format(date);
     } catch {
-      return 'Invalid date';
+      return "Invalid date";
     }
   };
 
   return (
     <TableRow className="border-b border-border hover:bg-muted/50 transition-colors">
       <TableCell className="font-mono text-sm font-medium">
-        {orderItem.orderId.slice(0, 8)}...
+        {String(orderItem.orderId).slice(0, 8)}...
       </TableCell>
 
       <TableCell>

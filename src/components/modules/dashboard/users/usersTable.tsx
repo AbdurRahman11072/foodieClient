@@ -1,10 +1,10 @@
 // users-table.tsx
-'use client';
+"use client";
 
-import { UpdateUserAction } from '@/actions/users';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { UpdateUserAction } from "@/actions/users";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -12,8 +12,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { cn } from '@/lib/utils';
+} from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 import {
   Ban,
   Calendar,
@@ -23,12 +23,12 @@ import {
   Store,
   UserCheck,
   UserX,
-} from 'lucide-react';
-import { useState } from 'react';
-import { toast } from 'sonner';
+} from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Pagination } from '@/components/ui/pagination-custom';
+import { Pagination } from "@/components/ui/pagination-custom";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 // User type based on actual API response
 export interface User {
@@ -80,7 +80,7 @@ export function UsersTable({
 
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set('page', page.toString());
+    params.set("page", page.toString());
     router.push(`${pathname}?${params.toString()}`);
   };
 
@@ -91,7 +91,7 @@ export function UsersTable({
   const [editSheetOpen, setEditSheetOpen] = useState(false);
 
   const banUser = async (id: string, data: any) => {
-    const toastId = toast.loading('Updating user info......');
+    const toastId = toast.loading("Updating user info......");
     const result = await UpdateUserAction(id, data);
 
     if (!result.success) {
@@ -105,21 +105,21 @@ export function UsersTable({
     const roles: Record<string, { color: string; icon: any; label: string }> = {
       admin: {
         color:
-          'bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800',
+          "bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800",
         icon: <Shield className="h-3 w-3 mr-1" />,
-        label: 'Admin',
+        label: "Admin",
       },
       provider: {
         color:
-          'bg-purple-50 dark:bg-purple-950/30 text-purple-700 dark:text-purple-400 border-purple-200 dark:border-purple-800',
+          "bg-purple-50 dark:bg-purple-950/30 text-purple-700 dark:text-purple-400 border-purple-200 dark:border-purple-800",
         icon: <Store className="h-3 w-3 mr-1" />,
-        label: 'Provider',
+        label: "Provider",
       },
       user: {
         color:
-          'bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800',
+          "bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800",
         icon: <UserCheck className="h-3 w-3 mr-1" />,
-        label: 'User',
+        label: "User",
       },
     };
     return roles[role.toLowerCase()] || roles.user;
@@ -130,42 +130,42 @@ export function UsersTable({
     if (!banned) {
       return {
         color:
-          'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800',
+          "bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800",
         icon: <CheckCircle className="h-3 w-3 mr-1" />,
-        text: 'Active',
+        text: "Active",
       };
     }
     if (banExpires && new Date(banExpires) > new Date()) {
       return {
         color:
-          'bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800',
+          "bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800",
         icon: <Ban className="h-3 w-3 mr-1" />,
-        text: 'Temporarily Banned',
+        text: "Temporarily Banned",
       };
     }
     return {
       color:
-        'bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800',
+        "bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800",
       icon: <Ban className="h-3 w-3 mr-1" />,
-      text: 'Permanently Banned',
+      text: "Permanently Banned",
     };
   };
 
   // Format date
   const formatDate = (date: string) => {
-    return new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
     }).format(new Date(date));
   };
 
   // Get initials from name
   const getInitials = (name: string) => {
     return name
-      .split(' ')
+      .split(" ")
       .map((n) => n[0])
-      .join('')
+      .join("")
       .toUpperCase()
       .slice(0, 2);
   };
@@ -221,15 +221,15 @@ export function UsersTable({
                   const roleBadge = getRoleBadge(user.role);
                   const statusBadge = getStatusBadge(
                     user.banned,
-                    user.banExpires
+                    user.banExpires,
                   );
 
                   return (
                     <TableRow
                       key={user.id}
                       className={cn(
-                        'border-b border-border transition-colors',
-                        hoveredRow === user.id && 'bg-muted/50'
+                        "border-b border-border transition-colors",
+                        hoveredRow === user.id && "bg-muted/50",
                       )}
                       onMouseEnter={() => setHoveredRow(user.id)}
                       onMouseLeave={() => setHoveredRow(null)}
@@ -254,7 +254,7 @@ export function UsersTable({
                             {user.name}
                           </div>
                           <div className="text-xs text-muted-foreground">
-                            ID: {user.id.slice(0, 8)}...
+                            ID: {String(user.id).slice(0, 8)}...
                           </div>
                         </div>
                       </TableCell>
@@ -274,8 +274,8 @@ export function UsersTable({
                         <Badge
                           variant="outline"
                           className={cn(
-                            'px-2 py-0 text-[11px] font-medium capitalize inline-flex items-center',
-                            roleBadge.color
+                            "px-2 py-0 text-[11px] font-medium capitalize inline-flex items-center",
+                            roleBadge.color,
                           )}
                         >
                           {roleBadge.icon}
@@ -288,8 +288,8 @@ export function UsersTable({
                         <Badge
                           variant="outline"
                           className={cn(
-                            'px-2 py-0 text-[11px] font-medium inline-flex items-center',
-                            statusBadge.color
+                            "px-2 py-0 text-[11px] font-medium inline-flex items-center",
+                            statusBadge.color,
                           )}
                         >
                           {statusBadge.icon}

@@ -1,11 +1,11 @@
 // components/orders/OrderCard.tsx
-'use client';
+"use client";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Order, STATUS_CONFIG } from '@/types/order';
-import { SessionData } from '@/types/session';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Order, STATUS_CONFIG } from "@/types/order";
+import { SessionData } from "@/types/session";
 import {
   ArrowRight,
   Calendar,
@@ -16,10 +16,10 @@ import {
   Package,
   Phone,
   Truck,
-} from 'lucide-react';
-import Link from 'next/link';
-import { CancelOrderAction } from './orderAction';
-import { OrderItems } from './orderItem';
+} from "lucide-react";
+import Link from "next/link";
+import { CancelOrderAction } from "./orderAction";
+import { OrderItems } from "./orderItem";
 
 interface OrderCardProps {
   order: Order;
@@ -40,11 +40,11 @@ export function OrderCard({ order, session }: OrderCardProps) {
 
     if (diffMins < 60) return `${diffMins} minutes ago`;
     if (diffHours < 24) return `${diffHours} hours ago`;
-    if (diffDays === 1) return 'Yesterday';
-    return date.toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
+    if (diffDays === 1) return "Yesterday";
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
     });
   };
 
@@ -86,7 +86,7 @@ export function OrderCard({ order, session }: OrderCardProps) {
             <div>
               <p className="text-xs text-muted-foreground">Order ID</p>
               <p className="font-mono text-sm font-semibold text-foreground">
-                {order.orderId.slice(0, 12)}...
+                {String(order.orderId).slice(0, 12)}...
               </p>
             </div>
           </div>
@@ -158,7 +158,7 @@ export function OrderCard({ order, session }: OrderCardProps) {
 
         {/* Actions */}
         <div className="flex justify-end gap-3 pt-4 border-t border-border">
-          {order.status === 'DELIVERING' && (
+          {order.status === "DELIVERING" && (
             <div className="flex items-center gap-2 text-sm text-primary bg-primary/10 px-3 py-1.5 rounded-lg">
               <Truck className="h-4 w-4" />
               <span>ETA: 25-35 min</span>

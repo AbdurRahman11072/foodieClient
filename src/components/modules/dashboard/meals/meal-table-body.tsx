@@ -161,18 +161,20 @@ export function MealsTableBody({
           {/* Category */}
           <TableCell>
             <div className="flex flex-wrap gap-1">
-              {(meal?.categories || []).slice(0, 2).map((cat) => (
-                <Badge
-                  key={cat.id}
-                  variant="outline"
-                  className={cn(
-                    "px-2 py-0 text-[11px] font-normal whitespace-nowrap",
-                    getCategoryColor(cat.name),
-                  )}
-                >
-                  {cat.name}
-                </Badge>
-              ))}
+              {(Array.isArray(meal?.categories) ? meal.categories : [])
+                .slice(0, 2)
+                .map((cat) => (
+                  <Badge
+                    key={cat.id}
+                    variant="outline"
+                    className={cn(
+                      "px-2 py-0 text-[11px] font-normal whitespace-nowrap",
+                      getCategoryColor(cat.name),
+                    )}
+                  >
+                    {cat.name}
+                  </Badge>
+                ))}
               {meal?.categories && meal?.categories.length > 2 && (
                 <Badge
                   variant="outline"
