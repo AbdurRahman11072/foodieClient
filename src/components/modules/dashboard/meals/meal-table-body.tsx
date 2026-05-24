@@ -1,12 +1,12 @@
 // components/modules/dashboard/meals/meals-table-body.tsx
-'use client';
+"use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { TableBody, TableCell, TableRow } from '@/components/ui/table';
-import { cn } from '@/lib/utils';
-import { Meal } from '@/types/meals';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
+import { Meal } from "@/types/meals";
 import {
   CheckCircle,
   Clock,
@@ -18,8 +18,8 @@ import {
   Star,
   Trash2,
   XCircle,
-} from 'lucide-react';
-import { useState } from 'react';
+} from "lucide-react";
+import { useState } from "react";
 
 interface MealsTableBodyProps {
   meals: Meal[];
@@ -34,44 +34,44 @@ interface MealsTableBodyProps {
 const getCategoryColor = (category: string) => {
   const colors: Record<string, string> = {
     Breakfast:
-      'bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800',
+      "bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800",
     Lunch:
-      'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800',
+      "bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800",
     Dinner:
-      'bg-indigo-50 dark:bg-indigo-950/30 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-800',
+      "bg-indigo-50 dark:bg-indigo-950/30 text-indigo-700 dark:text-indigo-400 border-indigo-200 dark:border-indigo-800",
     Dessert:
-      'bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-800',
+      "bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-800",
     Drink:
-      'bg-sky-50 dark:bg-sky-950/30 text-sky-700 dark:text-sky-400 border-sky-200 dark:border-sky-800',
+      "bg-sky-50 dark:bg-sky-950/30 text-sky-700 dark:text-sky-400 border-sky-200 dark:border-sky-800",
     Appetizer:
-      'bg-orange-50 dark:bg-orange-950/30 text-orange-700 dark:text-orange-400 border-orange-200 dark:border-orange-800',
+      "bg-orange-50 dark:bg-orange-950/30 text-orange-700 dark:text-orange-400 border-orange-200 dark:border-orange-800",
   };
-  return colors[category] || 'bg-muted text-muted-foreground border-border';
+  return colors[category] || "bg-muted text-muted-foreground border-border";
 };
 
 const getStatusColor = (status: string) => {
   const colors: Record<string, string> = {
-    DRFT: 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700',
+    DRFT: "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700",
     PUBLISHED:
-      'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800',
+      "bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800",
     ARCHIVED:
-      'bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800',
+      "bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800",
   };
   return colors[status] || colors.DRFT;
 };
 
 const formatPrice = (price: number) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   }).format(price);
 };
 
 const formatDate = (date: Date) => {
-  return new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
   }).format(new Date(date));
 };
 
@@ -106,8 +106,8 @@ export function MealsTableBody({
         <TableRow
           key={meal.id}
           className={cn(
-            'border-b border-border transition-colors',
-            hoveredRow === meal.id && 'bg-muted/50'
+            "border-b border-border transition-colors",
+            hoveredRow === meal.id && "bg-muted/50",
           )}
           onMouseEnter={() => setHoveredRow(meal.id)}
           onMouseLeave={() => setHoveredRow(null)}
@@ -117,7 +117,9 @@ export function MealsTableBody({
             <Avatar className="h-12 w-12 rounded-lg border border-border">
               <AvatarImage src={meal.coverImg} alt={meal.name} />
               <AvatarFallback className="rounded-lg bg-muted text-xs text-muted-foreground">
-                {meal.name?.slice(0, 2).toUpperCase() || '??'}
+                {typeof meal.name === "string" && meal.name.length > 0
+                  ? meal.name.slice(0, 2).toUpperCase()
+                  : "??"}
               </AvatarFallback>
             </Avatar>
           </TableCell>
@@ -159,13 +161,13 @@ export function MealsTableBody({
           {/* Category */}
           <TableCell>
             <div className="flex flex-wrap gap-1">
-              {meal?.categories?.slice(0, 2).map((cat) => (
+              {(meal?.categories || []).slice(0, 2).map((cat) => (
                 <Badge
                   key={cat.id}
                   variant="outline"
                   className={cn(
-                    'px-2 py-0 text-[11px] font-normal whitespace-nowrap',
-                    getCategoryColor(cat.name)
+                    "px-2 py-0 text-[11px] font-normal whitespace-nowrap",
+                    getCategoryColor(cat.name),
                   )}
                 >
                   {cat.name}
@@ -216,7 +218,7 @@ export function MealsTableBody({
           <TableCell className="text-center">
             <div className="flex items-center justify-center gap-1">
               <span className="text-sm font-semibold text-foreground">
-                {meal.rating?.toFixed(1) || '0.0'}
+                {meal.rating?.toFixed(1) || "0.0"}
               </span>
               <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
             </div>
@@ -227,11 +229,11 @@ export function MealsTableBody({
             <Badge
               variant="outline"
               className={cn(
-                'px-2 py-0 text-[11px] font-medium capitalize whitespace-nowrap',
-                getStatusColor(meal.status || 'DRFT')
+                "px-2 py-0 text-[11px] font-medium capitalize whitespace-nowrap",
+                getStatusColor(meal.status || "DRFT"),
               )}
             >
-              {meal.status?.toLowerCase() || 'draft'}
+              {meal.status?.toLowerCase() || "draft"}
             </Badge>
           </TableCell>
 
@@ -240,13 +242,13 @@ export function MealsTableBody({
             <Badge
               variant="outline"
               className={cn(
-                'px-2 py-0 text-[11px] font-medium whitespace-nowrap',
+                "px-2 py-0 text-[11px] font-medium whitespace-nowrap",
                 meal.available
-                  ? 'border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400'
-                  : 'border-border bg-muted text-muted-foreground'
+                  ? "border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400"
+                  : "border-border bg-muted text-muted-foreground",
               )}
             >
-              {meal.available ? 'Available' : 'Unavailable'}
+              {meal.available ? "Available" : "Unavailable"}
             </Badge>
           </TableCell>
 
@@ -296,12 +298,12 @@ export function MealsTableBody({
                 size="sm"
                 onClick={() => onToggleAvailability?.(meal)}
                 className={cn(
-                  'h-8 w-8 p-0',
+                  "h-8 w-8 p-0",
                   meal.available
-                    ? 'text-muted-foreground hover:bg-destructive/10 hover:text-destructive'
-                    : 'text-muted-foreground hover:bg-emerald-100 dark:hover:bg-emerald-950/30 hover:text-emerald-600 dark:hover:text-emerald-400'
+                    ? "text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                    : "text-muted-foreground hover:bg-emerald-100 dark:hover:bg-emerald-950/30 hover:text-emerald-600 dark:hover:text-emerald-400",
                 )}
-                title={meal.available ? 'Mark Unavailable' : 'Mark Available'}
+                title={meal.available ? "Mark Unavailable" : "Mark Available"}
               >
                 {meal.available ? (
                   <XCircle className="h-4 w-4" />

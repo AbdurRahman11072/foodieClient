@@ -125,13 +125,19 @@ const AnalyticsCharts = ({ statsData }: AnalyticsChartsProps) => {
                   dataKey="date"
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
+                  tick={{
+                    fontSize: 12,
+                    fill: "hsl(var(--foreground))",
+                  }}
                   dy={10}
                 />
                 <YAxis
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
+                  tick={{
+                    fontSize: 12,
+                    fill: "hsl(var(--foreground))",
+                  }}
                 />
                 <Tooltip content={<CustomTooltip prefix="$" />} />
                 <Area
@@ -174,13 +180,20 @@ const AnalyticsCharts = ({ statsData }: AnalyticsChartsProps) => {
                   dataKey="name"
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
+                  tick={{
+                    fontSize: 10,
+                    fill: "hsl(var(--foreground))",
+                  }}
                   dy={10}
                 />
                 <YAxis
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
+                  tick={{
+                    fontSize: 12,
+                    fill: "hsl(var(--foreground))",
+                  }}
+                  className="dark:text-white"
                 />
                 <Tooltip
                   content={<CustomTooltip />}
@@ -235,7 +248,7 @@ const AnalyticsCharts = ({ statsData }: AnalyticsChartsProps) => {
                   height={36}
                   iconType="circle"
                   formatter={(value) => (
-                    <span className="text-xs font-medium text-muted-foreground">
+                    <span className="text-xs font-medium text-white">
                       {value}
                     </span>
                   )}
