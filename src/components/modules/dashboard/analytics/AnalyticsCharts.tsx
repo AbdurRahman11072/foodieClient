@@ -49,27 +49,6 @@ const CustomTooltip = ({ active, payload, label, prefix = "" }: any) => {
 const AnalyticsCharts = ({ statsData }: AnalyticsChartsProps) => {
   if (!statsData) return <div>No data available</div>;
 
-<<<<<<< HEAD
-  // Format Revenue Data - FIXED: Use item.date instead of item.createdAt
-  const formattedRevenue =
-    statsData.revenueData?.map((item: any) => {
-      // Parse the date string (format: "2026-05-17")
-      const dateParts = item.date.split("-");
-      const date = new Date(
-        parseInt(dateParts[0]),
-        parseInt(dateParts[1]) - 1,
-        parseInt(dateParts[2]),
-      );
-
-      return {
-        date: new Intl.DateTimeFormat("en-US", {
-          month: "short",
-          day: "2-digit",
-        }).format(date),
-        revenue: item.revenue,
-      };
-    }) || [];
-=======
   // Format Revenue Data - FIXED: Use the correct field names from backend
   const formattedRevenue =
     statsData.revenueData
@@ -88,7 +67,6 @@ const AnalyticsCharts = ({ statsData }: AnalyticsChartsProps) => {
       })
       .sort((a: any, b: any) => a.originalDate.localeCompare(b.originalDate)) ||
     [];
->>>>>>> 6f473ee90578e7fc4b2d11eb01d2b0ef5f20a46b
 
   // Format Top Meals
   const formattedMeals =
