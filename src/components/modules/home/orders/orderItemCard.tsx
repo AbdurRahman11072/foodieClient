@@ -1,18 +1,18 @@
 // components/orders/orderItemCard.tsx
-'use client';
+"use client";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   ITEM_STATUS_CONFIG,
   OrderItem as OrderItemType,
   OrderStatus,
-} from '@/types/order';
-import { SessionData } from '@/types/session';
-import { Package, Star } from 'lucide-react';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { ReviewModal } from './reviewModel';
+} from "@/types/order";
+import { SessionData } from "@/types/session";
+import { Package, Star } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+import { ReviewModal } from "./reviewModel";
 
 interface OrderItemCardProps {
   item: OrderItemType;
@@ -20,23 +20,19 @@ interface OrderItemCardProps {
   session: SessionData;
 }
 
-export function OrderItemCard({
-  item,
-  session,
-}: OrderItemCardProps) {
+export function OrderItemCard({ item, session }: OrderItemCardProps) {
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [hasReviewed, setHasReviewed] = useState(
-    () => (item.meal?.reviews?.length ?? 0) > 0
+    () => (item.meal?.reviews?.length ?? 0) > 0,
   );
 
   const ItemStatusIcon = ITEM_STATUS_CONFIG[item.status]?.icon || Package;
   const itemStatusConfig = ITEM_STATUS_CONFIG[item.status];
 
-
   const handleReviewSuccess = () => {
     setHasReviewed(true);
     // Optional: Show success toast
-    console.log('Review submitted successfully for:', item.mealName);
+    console.log("Review submitted successfully for:", item.mealName);
   };
 
   return (

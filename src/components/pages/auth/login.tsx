@@ -73,6 +73,16 @@ const LoginPage = () => {
     }
   };
 
+  const fillAdminCredentials = () => {
+    form.setValue("email", "admin@gmail.com");
+    form.setValue("password", "Admin123@");
+  };
+
+  const fillUserCredentials = () => {
+    form.setValue("email", "user123@gmail.com");
+    form.setValue("password", "User123@");
+  };
+
   const handlerGoogleLogin = async () => {
     await authClient.signIn.social({
       provider: "google",
@@ -94,6 +104,22 @@ const LoginPage = () => {
             className="space-y-5"
             onSubmit={form.handleSubmit(onSubmit)}
           >
+            <div className="grid gap-2 sm:grid-cols-2">
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={fillAdminCredentials}
+              >
+                Admin
+              </Button>
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={fillUserCredentials}
+              >
+                User
+              </Button>
+            </div>
             <Controller
               name="email"
               control={form.control}

@@ -1,26 +1,26 @@
-import logoSrc from '@/assets/foodie_logo_white_text.svg';
+import logoSrc from "@/assets/foodie_logo_white_text.svg";
 export const logo = {
-  url: '/',
+  url: "/",
   src: logoSrc,
-  alt: 'logo',
-  title: 'Foodie',
+  alt: "logo",
+  title: "Foodie",
 };
 export const menu = [
-  { title: 'Home', url: '/' },
+  { title: "Home", url: "/" },
   {
-    title: 'Restaurants',
-    url: 'restaurants',
+    title: "Restaurants",
+    url: "/restaurants",
   },
   {
-    title: 'Meals',
-    url: 'meals',
+    title: "Meals",
+    url: "/meals",
   },
   {
-    title: 'My Orders',
-    url: 'orders',
+    title: "My Orders",
+    url: "/orders",
   },
 ];
 export const auth = {
-  login: { title: 'Login', url: 'login' },
-  signup: { title: 'Sign up', url: 'sign-up' },
+  login: { title: "Login", url: "/login" },
+  signup: { title: "Sign up", url: "/sign-up" },
 };
