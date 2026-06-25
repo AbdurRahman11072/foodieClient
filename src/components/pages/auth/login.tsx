@@ -107,14 +107,14 @@ const LoginPage = () => {
             <div className="grid gap-2 sm:grid-cols-2">
               <Button
                 type="button"
-                variant="secondary"
+                variant="hero2"
                 onClick={fillAdminCredentials}
               >
                 Admin
               </Button>
               <Button
                 type="button"
-                variant="secondary"
+                variant="hero2"
                 onClick={fillUserCredentials}
               >
                 User
